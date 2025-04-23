@@ -1,0 +1,35 @@
+# 🌌 Immersive Bow Interaction: State Transition Diagram (No Text Prompts)
+
+```mermaid
+stateDiagram-v2
+    [*] --> DojoEntry
+
+    DojoEntry --> ArrowCrafting
+    ArrowCrafting --> AddFletching
+    AddFletching --> BowAssembly_Lower
+    BowAssembly_Lower --> BowAssembly_Upper
+    BowAssembly_Upper --> PlaceBowGround
+    PlaceBowGround --> PullGripAndString
+    PullGripAndString --> AttachLowerString
+    AttachLowerString --> TightenString
+    TightenString --> StoreArrow
+    StoreArrow --> DrawAndAim
+    DrawAndAim --> ReleaseArrow
+    ReleaseArrow --> [*]
+
+    %% Passive hints
+    state Idle {
+      note right of Idle : If user does nothing\nfor X seconds → object glows.
+    }
+
+    ArrowCrafting --> Idle: "No interaction"
+    AddFletching --> Idle
+    BowAssembly_Lower --> Idle
+    BowAssembly_Upper --> Idle
+    PlaceBowGround --> Idle
+    PullGripAndString --> Idle
+    AttachLowerString --> Idle
+    TightenString --> Idle
+    StoreArrow --> Idle
+    DrawAndAim --> Idle
+    ...
